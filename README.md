@@ -29,6 +29,12 @@ histobin <- function(s, p, n) {
 }
 ```
 
+La ligne ```histobin(100, 0.75, 1000)``` renvoie l'histogramme suivant : 
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/9cf278b2-001f-4b6e-a499-c0410fe0d88f)
+
+
+
 ### Question 4
 Il suffit juste de modifier quelques lignes de nos fonctions pour faire la même simulation avec la loi géométrique.
 Commençons par réécrire notre fonction ```bin(p,n)``` et à l'adapter pour une fonction géométrique. La loi géométrique n'a que deux résultats possibles le succès ou l'échec avec une probabilité de succès constante. Il nous suffit donc de compter le nombre d'echecs nécessaires pour obtenir le premier succès.
@@ -56,6 +62,11 @@ histogeom <- function(s, p) {
 ```
 Cette fonction marche de la même manière que ```histobin(s,p,n)``` : elle génèrere un histogramme et supperpose la courbe de densité de probabilité théorique de la loi géométrique avec la probabilité p spécifiée.
 
+La ligne ```histogeom(10000, 0.3)``` renvoie l'histogramme suivant : 
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/0ef7c915-4a63-4165-be07-fbef7ea65d8a)
+
+
 ### Question 5
 
 Créons la fonction ```uniforme_discret(n)``` qui va simuler la loi uniforme sur [1, n].
@@ -69,8 +80,16 @@ On utilise la fonction ```floor(a)``` pour eviter d'avoir des décimaux (ex: ```
 Si nous voulons faire une illustration graphique, nous pouvons utiliser les deux lignes suivantes : 
 ```
 echantillons <- replicate(10000, uniforme_discret(n))
-hist(echantillons, breaks = n, main = "Histogramme de la loi uniforme discrète")
+hist(echantillons, breaks = 10, main = "Histogramme de la loi uniforme discrète")
 ```
+
+Simulation pour la ligne ```hist(echantillons, breaks = 10, main = "Loi uniforme discrète n=10")```, (n=10).
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/d13964b4-571b-44fc-b0a9-268300c51564)
+
+
+Simulation pour la ligne ```hist(echantillons, breaks = 10, main = "Loi uniforme discrète n=25")```, (n=25).
+![image](https://github.com/dev-err418/sy01/assets/59390256/022b47d1-021e-46d0-815c-c5321b640fe1)
 
 
 

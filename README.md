@@ -295,6 +295,59 @@ Position moyenne après N pas :"
     [,1]  [,2]
  -0.0188 0.045
 ```
-Nous trouvons ```(-0.019, 0.045``` ce qui est très proche de (0,0).
+Nous trouvons ```(-0.019, 0.045)``` ce qui est très proche de (0,0).
 
-### 
+Voici une simulation graphique (avec en rouge le point moyen).
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/55ad5542-94fd-430d-934e-c800dcb73109)
+
+
+Et voici le code utilisé : 
+```
+simu_2d =  function(n){
+    orientations = matrix(c(1, 0, -1, 0, 0, 1, 0, -1), ncol = 2, byrow = TRUE)
+    position = matrix(c(0,0), ncol=2)
+    for (i in (1:n)){
+        position = position + orientations[sample(1:4,1),]
+    }
+    return(position)
+}
+
+essais <- replicate(10000, simu_2d(25))  
+
+plot(essais[,1,], essais[,2,], main = "10000 positions apres 20 deplacements", xlab = "Axe X", ylab = "Axe Y", pch = 3, col = "blue")
+points(mean(essais[,1,]), mean(essais[,2,]), col="red", pch=20)
+
+```
+
+### Question 19
+
+Voici le code utilisé pour ```N=10 et N=25``` :
+```
+simu_marche_2d = function(N) {
+  pas_possibles = matrix(c(1, 0, -1, 0, 0, 1, 0, -1), ncol = 2, byrow = TRUE)
+  position = matrix(c(0, 0), ncol = 2)
+  for (i in 1:N) {
+    deplacement = pas_possibles[sample(1:4, 1), ]
+    position = position + deplacement
+  }
+  return(position)
+}
+
+N_simulations = 10000
+B10_positions = replicate(N_simulations, simu_marche_2d(10))
+B25_positions = replicate(N_simulations, simu_marche_2d(25))
+
+hist(B10_positions[,1,], main="Loi de B10 ", xlab="Position B10", col="blue")
+hist(B25_positions[,1,], main="Loi de B25 ", xlab="Position B25", col="blue")
+```
+
+Et voici les deux graphiques :
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/59a94bb4-5b4c-4eb6-8818-f28826e2739c)
+
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/b242617b-981d-465c-b8c8-0f36bbf03b71)
+
+
+

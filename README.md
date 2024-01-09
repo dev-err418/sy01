@@ -261,6 +261,38 @@ Voici le graphique renvoyé pour 10000 simulations d'un pas de 20 :
 
 ![image](https://github.com/dev-err418/sy01/assets/59390256/8b37e70d-59d6-4815-84d7-072698cb98dd)
 
+### Question 17
+### Question 18
 
+La position moyenne après N pas est de (0,0). Essayons de le simuler avec du code R.
+Voici notre code après 10 pas en faisant 10000 simulations : 
 
+```
+simu_marche_2d = function(N) {
+  pas_possibles = matrix(c(1, 0, -1, 0, 0, 1, 0, -1), ncol = 2, byrow = TRUE)
+  position = matrix(c(0,0),ncol = 2)
+  for (i in 1:N) {
+    deplacement = pas_possibles[sample(1:4,1),] 
+    position = position + deplacement
+  }
+  return(position)
+}
 
+rep = 10000 
+N = 10 #nombre de pas
+
+position_bis = matrix(c(0,0), ncol=2)
+for (i in 1:rep) {
+  position_bis=position_bis + simu_marche_2(N)
+}
+position_moyenne= position_bis/ rep
+print("Position moyenne après N pas :", position_moyenne)
+```
+
+Et voici le résultat renvoyé :
+```
+Position moyenne après N pas :"
+    [,1]  [,2]
+ -0.0188 0.045
+```
+Nous trouvons ```(-0.019, 0.045``` ce qui est très proche de (0,0).

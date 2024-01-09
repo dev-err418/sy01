@@ -218,11 +218,10 @@ curve(dnorm(x, mean=mu, sd=sigma), col="red", lwd=2, add=TRUE)
 
 Voici le code que nous avons utilisé pour calculer la racine carrée de l'espérence au carré (moyenne quadratique) : 
 ```
-pos_fin = function(N_pas,R){  #Création de la fonction
+pos_fin = function(N_pas,R){
    pos_fin = replicate(R, sum(sample(c(-1, 1), N_pas, replace = TRUE))^2)    
-   esperance_carree = mean(pos_fin) #On calcule la moyenne des positions finales élevées au carrés grâce à la simulation.
-   racine_esperance_carree = sqrt(esperance_carree) #On prend la racine de notre moyenne attribuée précédemment
-  cat("La moyenne quadratique après,",N_pas,"pas est",racine_esperance_carree)
+   esperance_carree = mean(pos_fin)
+   racine_esperance_carree = sqrt(esperance_carree)
 }
 
 N_pas = 144
@@ -234,7 +233,7 @@ racine_esperance_carree = sqrt(esperance_carree)
 cat("La moyenne quadratique est,",racine_esperance_carree,"le pas est de",N_pas)
 ```
 
-On obtient ```La moyenne quadratique est 11.98427,  le pas est de 144```. On devait obtenir 12 mais nous obtenons 11.98.
+On obtient ```La moyenne quadratique est 11.98427, le pas est de 144```. On devait obtenir 12 mais nous obtenons 11.98.
 
 ## Généralisation en dimension 2
 ### Question 16

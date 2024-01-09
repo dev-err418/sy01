@@ -279,7 +279,7 @@ simu_marche_2d = function(N) {
 }
 
 rep = 10000 
-N = 10 #nombre de pas
+N = 10
 
 position_bis = matrix(c(0,0), ncol=2)
 for (i in 1:rep) {
@@ -296,3 +296,5 @@ Position moyenne après N pas :"
  -0.0188 0.045
 ```
 Nous trouvons ```(-0.019, 0.045``` ce qui est très proche de (0,0).
+
+### 

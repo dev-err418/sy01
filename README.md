@@ -4,7 +4,7 @@
 ## Exercice 1, Simulation d'une loi discrète
 
 ### Question 1
-Pour exprimer X en fonction de Ui, nous allons utiliser le fait que Ui suit une loie uniforme continue sur [0,1]. X est donc égal à la somme de 1 à n, de chaque variable Ui dans la fonction indicatrice qui vaut 1 si la condition Ui <= p est vraie et qui vaut 0 sinon. X compte donc le nombre de Ui pour lesquels Ui <= p, ce qui correspond à une distribution binomiale.
+Pour exprimer X en fonction de Ui, nous allons utiliser le fait que Ui suit une loi uniforme continue sur [0,1]. X est donc égal à la somme de 1 à n, de chaque variable Ui dans la fonction indicatrice qui vaut 1 si la condition Ui <= p est vraie et qui vaut 0 sinon. X compte donc le nombre de Ui pour lesquels Ui <= p, ce qui correspond à une distribution binomiale.
 ```
 X = Σ I(Ui <= p), somme de i=1 à n, avec I la fonction indicatrice qui vaut 1 si la condition est respectée.
 ```
@@ -91,6 +91,69 @@ Simulation pour la ligne ```hist(echantillons, breaks = 10, main = "Loi uniforme
 Simulation pour la ligne ```hist(echantillons, breaks = 10, main = "Loi uniforme discrète n=25")```, (n=25).
 ![image](https://github.com/dev-err418/sy01/assets/59390256/022b47d1-021e-46d0-815c-c5321b640fe1)
 
+
+## Exercice 3, Marche aléatoires
+
+### Question 11
+
+```A0``` vaut 0 car nous commençons à la position ```x=0``` et nous n'avons effectué aucun mouvement. La loi de probabilité de ```A0``` est constante (probabilité certaine) car elle vaut toujours 0.
+Voici la fonction ```simu_pas(n)``` qui permet de simuler la position de notre points après ```n``` pas. 
+
+```
+simu_pas = function(n) {
+    pas = sample(c(-1, 1), n, replace = TRUE)
+    trajectoire = cumsum(pas)
+    for (i in 1:n) { #i varie de 1 à n
+      cat("Après", i, "pas :", trajectoire[i], "\n")
+    }
+  }
+```
+```simu_pas(n)``` nous renvoie ```2```. Donc sur cette simulation, la position après 10 pas est de ```x=2```.
+
+### Question 12
+
+Voici le code que nous allons utiliser pour simuler ```A1, A2, A3, A4 et A5```. Nous allons faire 100000 simulations pour verifier nos lois de probabilité.
+
+```
+A0 = 0 
+PA0= 1 
+nb_simu = 100000
+  
+simu_marche_alea = function(x){
+  sum(sample(c(-1, 1), x, replace = TRUE))
+}
+ # Simulons les Ai pour i variant de 1 à 5 :
+A1 <- replicate(nb_simu, simu_marche_alea(1))
+A2 <- replicate(nb_simu, simu_marche_alea(2))
+A3 <- replicate(nb_simu, simu_marche_alea(3))
+A4 <- replicate(nb_simu, simu_marche_alea(4))
+A5 <- replicate(nb_simu, simu_marche_alea(5))
+
+table(A1) / nb_simu
+table(A2) / nb_simu
+table(A3) / nb_simu
+table(A4) / nb_simu
+table(A5) / nb_simu
+```
+
+Voici le résultat pour nos valeurs de Ai :
+```
+A1
+     -1       1 
+0.50021 0.49979 
+A2
+     -2       0       2 
+0.24930 0.49838 0.25232 
+A3
+     -3      -1       1       3 
+0.12285 0.37701 0.37567 0.12447 
+A4
+     -4      -2       0       2       4 
+0.06283 0.24967 0.37483 0.25209 0.06058 
+A5
+     -5      -3      -1       1       3       5 
+0.03144 0.15682 0.31430 0.31231 0.15386 0.03127 
+```
 
 
 

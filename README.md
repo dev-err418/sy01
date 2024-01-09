@@ -353,3 +353,34 @@ Et voici les deux graphiques :
 
 
 ### Question 20
+
+Voici le code que nous avons utiliser (nous nous attendons à trouver 5) :
+
+```
+simu_marche_2d = function(N) {
+  pas_possibles = matrix(c(1, 0, -1, 0, 0, 1, 0, -1), ncol = 2, byrow = TRUE)
+  position = matrix(c(0, 0), ncol = 2)
+  for (i in 1:N) {
+    deplacement = pas_possibles[sample(1:4, 1), ]
+    position = position + deplacement
+  }
+  return(position)
+}
+
+simu_distance = function(N, rep) {
+  distance = numeric(rep) 
+  for (i in 1:rep) {
+    pos_fin = simu_marche_2d(N)
+    distance[i]= sqrt(sum(pos_fin^2))
+  }
+  return(distance) 
+}
+
+N = 25
+rep = 10000
+distance_fin = simu_distance(N, rep)
+moy_dist_fin = mean(distance_fin) 
+print(moy_dist_fin)
+```
+
+Le résultat renvoyé est : ```4.437155```, ce qui est très proche de 5.

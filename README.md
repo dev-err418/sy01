@@ -262,6 +262,8 @@ Voici le graphique renvoyé pour 10000 simulations d'un pas de 20 :
 ![image](https://github.com/dev-err418/sy01/assets/59390256/8b37e70d-59d6-4815-84d7-072698cb98dd)
 
 ### Question 17
+
+Le 4 positions possibles pour B1 sont (0,1), (0,-1), (1,0) et (-1,0) avec une probabilité de 1/4 pour chacune des 4 positions.
 ### Question 18
 
 La position moyenne après N pas est de (0,0). Essayons de le simuler avec du code R.
@@ -350,4 +352,4 @@ Et voici les deux graphiques :
 ![image](https://github.com/dev-err418/sy01/assets/59390256/b242617b-981d-465c-b8c8-0f36bbf03b71)
 
 
-
+### Question 20

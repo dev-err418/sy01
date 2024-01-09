@@ -155,5 +155,9 @@ A5
 0.03144 0.15682 0.31430 0.31231 0.15386 0.03127 
 ```
 
+Exemple de graphique pour la répartion de A5 :
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/64d21d5a-3faa-4d7e-b186-43d639dd639e)
+
 
 

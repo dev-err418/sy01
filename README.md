@@ -118,11 +118,18 @@ Voici le code que nous allons utiliser pour simuler ```A1, A2, A3, A4 et A5```. 
 simul_pas = function(n){
     sum(sample(c(-1, 1), n, replace = TRUE))
 }
-A1<-replicate(1000,simul_pas(1))
-A2<-replicate(1000,simul_pas(2))
-A3<-replicate(1000,simul_pas(3))
-A4<-replicate(1000,simul_pas(4))
-A5<-replicate(1000,simul_pas(5))
+
+table(A1) / 100000
+table(A2) / 100000
+table(A3) / 100000
+table(A4) / 100000
+table(A5) / 100000
+
+A1<-replicate(100000,simul_pas(1))
+A2<-replicate(100000,simul_pas(2))
+A3<-replicate(100000,simul_pas(3))
+A4<-replicate(100000,simul_pas(4))
+A5<-replicate(100000,simul_pas(5))
 ```
 
 Voici le résultat pour nos valeurs de Ai :

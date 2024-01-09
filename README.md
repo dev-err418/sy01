@@ -155,5 +155,34 @@ Exemple de graphique pour la répartion de A5 :
 
 ![image](https://github.com/dev-err418/sy01/assets/59390256/64d21d5a-3faa-4d7e-b186-43d639dd639e)
 
+### Question 13
+
+Nous allons maintenant calculer la positions moyenne après avoir fait ```N``` pas. 
+Utilisons le code suivant pour faire une simulation.
+
+```
+simulation_marche = function(N, p) {
+    pas_bis = sample(c(-1, 1), size = N, replace = TRUE, prob = c(1 - p, p))
+    return(sum(pas_bis))
+}
+ 
+N = 30
+p = 0.5
+ 
+simulations = replicate(100000, simulation_marche(N, p))
+position_moy = mean(simulations)
+cat("Position moyenne après", N, "pas:", position_moy)
+hist(simulations,col="pink", main = "Distribution des positions finales après N pas", xlab = "Position finale", ylab = "Fréquence") 
+```
+
+Le graphique de répartition renvoyé par le code du-dessus pour 100000 simulations de 30 pas est le suivant :
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/07882c16-cefd-4053-844d-1afb000bacc9)
+
+### Question 14
+
+
+
+
 
 

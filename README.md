@@ -216,6 +216,7 @@ curve(dnorm(x, mean=mu, sd=sigma), col="red", lwd=2, add=TRUE)
 
 ### Question 15
 
+Nous devons calculer la distance moyenne quadratique.
 Voici le code que nous avons utilisé pour calculer la racine carrée de l'espérence au carré (moyenne quadratique) : 
 ```
 pos_fin = function(N_pas,R){
@@ -236,7 +237,29 @@ cat("La moyenne quadratique est,",racine_esperance_carree,"le pas est de",N_pas)
 On obtient ```La moyenne quadratique est 11.98427, le pas est de 144```. On devait obtenir 12 mais nous obtenons 11.98.
 
 ## Généralisation en dimension 2
+
 ### Question 16
+
+```B0``` vaut ```(0,0)```. ```B0``` suit une loi certaine et vaudra toujours ```(0,0)```.
+Voici le code que nous avons utilisé pour faire un simulation 2D.
+
+```
+simu_2d =  function(n){
+    orientations = matrix(c(1, 0, -1, 0, 0, 1, 0, -1), ncol = 2, byrow = TRUE)
+    position = matrix(c(0,0), ncol=2)
+    for (i in (1:n)){
+        position = position + orientations[sample(1:4,1),]
+    }
+    return(position)
+}
+
+essais <- replicate(10000, simu_2d(20))  
+plot(essais[,1,], essais[,2,], main = "10000 positions apres 20 deplacements", xlab = "Axe X", ylab = "Axe Y", pch = 3, col = "blue")
+```
+
+Voici le graphique renvoyé pour 10000 simulations d'un pas de 20 : 
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/8b37e70d-59d6-4815-84d7-072698cb98dd)
 
 
 

@@ -115,25 +115,14 @@ simu_pas = function(n) {
 Voici le code que nous allons utiliser pour simuler ```A1, A2, A3, A4 et A5```. Nous allons faire 100000 simulations pour verifier nos lois de probabilité.
 
 ```
-A0 = 0 
-PA0= 1 
-nb_simu = 100000
-  
-simu_marche_alea = function(x){
-  sum(sample(c(-1, 1), x, replace = TRUE))
+simul_pas = function(n){
+    sum(sample(c(-1, 1), n, replace = TRUE))
 }
- # Simulons les Ai pour i variant de 1 à 5 :
-A1 <- replicate(nb_simu, simu_marche_alea(1))
-A2 <- replicate(nb_simu, simu_marche_alea(2))
-A3 <- replicate(nb_simu, simu_marche_alea(3))
-A4 <- replicate(nb_simu, simu_marche_alea(4))
-A5 <- replicate(nb_simu, simu_marche_alea(5))
-
-table(A1) / nb_simu
-table(A2) / nb_simu
-table(A3) / nb_simu
-table(A4) / nb_simu
-table(A5) / nb_simu
+A1<-replicate(1000,simul_pas(1))
+A2<-replicate(1000,simul_pas(2))
+A3<-replicate(1000,simul_pas(3))
+A4<-replicate(1000,simul_pas(4))
+A5<-replicate(1000,simul_pas(5))
 ```
 
 Voici le résultat pour nos valeurs de Ai :

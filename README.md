@@ -157,7 +157,10 @@ Exemple de graphique pour la répartion de A5 :
 
 ### Question 13
 
-Nous allons maintenant calculer la positions moyenne après avoir fait ```N``` pas. 
+Nous allons maintenant calculer la positions moyenne après avoir fait ```N``` pas. La position moyenne est 0. 
+
+```Moyenne(An) = Moyenne(A1 + A2 + ... + An) = Moyenne(A1) + Moyenne(A2) + ... + Moyenne(An) = 0 + 0 + ... + 0 = 0```
+
 Utilisons le code suivant pour faire une simulation.
 
 ```
@@ -172,15 +175,44 @@ p = 0.5
 simulations = replicate(100000, simulation_marche(N, p))
 position_moy = mean(simulations)
 cat("Position moyenne après", N, "pas:", position_moy)
-hist(simulations,col="pink", main = "Distribution des positions finales après N pas", xlab = "Position finale", ylab = "Fréquence") 
+hist(simulations,col="red", main = "Distribution des positions finales après N pas", xlab = "Position finale", ylab = "Fréquence") 
 ```
 
 Le graphique de répartition renvoyé par le code du-dessus pour 100000 simulations de 30 pas est le suivant :
 
-![image](https://github.com/dev-err418/sy01/assets/59390256/07882c16-cefd-4053-844d-1afb000bacc9)
+![image](https://github.com/dev-err418/sy01/assets/59390256/4b49f519-3847-4c6e-9635-d56106c523b0)
+
 
 ### Question 14
 
+```An``` suit une loie normale symétrique, centrée à 0.
+Nous pouvons l'illustrer avec le graphique suivant ```(pour N=30, p=0.5 et le nombre de simulation = 100000)``` :
+
+![image](https://github.com/dev-err418/sy01/assets/59390256/cc05f8fa-16bc-496a-bc5a-ab7129354966)
+
+Avec les batons bleus qui correspondent à nos simulation et la courbe rouge qui correspond à une distribution normale.
+Voici le code utilisé : 
+```
+simulation_marche = function(N, p) {
+    pas_bis = sample(c(-1, 1), size = N, replace = TRUE, prob = c(1 - p, p))
+    return(sum(pas_bis))
+}
+
+N = 30
+p = 0.5
+
+simulations = replicate(100000, simulation_marche(N, p))
+position_moy = mean(simulations)
+cat("Position moyenne après", N, "pas:", position_moy)
+
+hist(simulations, col="blue", main="Distribution des positions finales après N pas", xlab="Position finale", ylab="Fréquence", prob=TRUE)
+
+mu = mean(simulations)
+sigma = sd(simulations)
+x = seq(min(simulations), max(simulations), length=100)
+y = dnorm(x, mean=mu, sd=sigma)
+curve(dnorm(x, mean=mu, sd=sigma), col="red", lwd=2, add=TRUE)
+```
 
 
 
